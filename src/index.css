@@ -1,0 +1,184 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.login-form-div {
+  background: white;
+  box-shadow: 0 2rem 5rem rgba(0,0,0,0.06);
+  padding: 40px 30px!important;
+}
+
+.login-form-row{
+  justify-content: center;
+  margin-top: 100px!important;
+}
+
+.image-div {
+  text-align: center;
+  margin: 0 auto;
+}
+.login-input{
+  border: 3px solid #ccc!important;
+}
+.submssion-div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.submssion-div input{
+  background-color: #d01124;
+  color: white;
+  padding: 10px 30px;
+  border-color: transparent;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+}
+
+a.submit-forget-link{
+  text-decoration: none;
+  color: #ccc;
+}
+.submssion-div {
+  margin-top: 40px;
+}
+.login-input-div {
+  margin-top: 40px;
+}
+div#collapsibleNavbar{
+  justify-content: right;
+}
+.logo-pic img {
+  width: 80%;
+}
+.nav-link i {
+  margin-right: 10px;
+}
+.nav-container {
+  padding: 0px 40px!important;
+  box-shadow: 0 4px 12px rgba(8,46,181,.12);
+  padding-bottom: 10px!important;
+}
+.studio-nav {
+  background-color: white!important;
+
+}
+a.nav-link {
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+}
+li.nav-item {
+  margin-left: 20px;
+}
+.submssion-div input:hover{
+  background-color: transparent;
+  color: black;
+  border-color: transparent;
+  border: 2px solid #d01124;
+}
+a.nav-link:hover{
+  color: #d01124;
+}
+.thankyoupageparent{
+  text-align: center;
+
+}
+.thankyoupara{
+font-weight: 400;
+font-size: 20px;
+line-height: 28px;
+/* or 140% */
+
+text-align: center;
+font-feature-settings: 'salt' on, 'liga' off;
+
+/* Default / Black */
+
+color: #0B0D17;
+margin-top: 2%;
+}
+
+.thankyou-button{
+  justify-content: center;
+  align-items: center;
+  padding: 8px 15px;
+  height: 44px;
+  gap: 10px;
+  border-color: transparent;
+  background: #ED2939;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 16px;
+  margin-top: 2%;
+  text-align: center;
+  color: #FFFFFF;
+  border-radius: 0.5rem;
+}
+.thankyouheading {
+  margin-top: 30px;
+}
+.thankyoupageparent {
+  margin-top: 80px;
+}
+.thankyou-button:hover{
+  background-color: transparent;
+  color: black;
+  border-color: transparent;
+  border: 2px solid #d01124;
+}
+i.fa.fa-long-arrow-right {
+  font-size: 17px;
+}
+
+.register-button input:hover{
+  background-color: transparent;
+  color: black;
+  border-color: transparent;
+  border: 2px solid #d01124;
+}
+.cookiebutton {
+  background-color: #ed2939;
+  color: #fff!important;
+  padding: 10px 30px;
+  border: 1px solid #de5959;
+  border-radius: 0;
+  cursor: pointer;
+  font-family: Graphik,sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+p.cookietext {
+  color: #fff;
+  font-size: 14px;
+  margin: 0 30px 0 0;
+  font-family: Graphik,sans-serif;
+  display: block;
+}
+.cookierow {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.cookiesection {
+  border: 1px solid #000;
+  padding: 20px;
+  background-color: #000;
+  direction: ltr;
+  display: block;
+  position: fixed;
+  bottom: 0;
+  opacity: 1;
+}
+.forget-password-submit input{
+  margin: 0 auto;
+}
