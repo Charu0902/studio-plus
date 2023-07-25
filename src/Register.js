@@ -58,49 +58,88 @@ const Register = (props) => {
     };
 
     const verifyEmail = () => {
-        console.log('Verification Code in State:', verificationCode);
-        
-        // Get the verification code stored in state (authCode)
-        const receivedVerificationCode = authCode;
-
-        console.log('Recieved Verification code is', receivedVerificationCode);
-
-        if (verificationCode === receivedVerificationCode) {
-            // Verification successful
-
-            // Clear the verification code from the state after successful verification
-            setAuthCode('');
-
-            // Redirect to the thank you page or any other page you like
-            history(`/thankyou`);
-        } else {
-            // Verification failed
-            alert('Invalid verification code. Please try again.');
-        }
-    };
+      console.log('Verification Code in State:', verificationCode);
+      
+      // Get the verification code stored in state (authCode)
+      const receivedVerificationCode = authCode;
+  
+      console.log('Received Verification code is', receivedVerificationCode);
+  
+      if (verificationCode === receivedVerificationCode) {
+          // Verification successful
+  
+          // Clear the verification code from the state after successful verification
+          setAuthCode('');
+  
+          const senddata = {
+              name: data.name,
+              email: data.email,
+              company: data.company,
+              url: data.url,
+              password: data.password
+          };
+  
+          axios.post('https://react.opositive.io/insert.php', senddata)
+              .then((result) => {
+                  if (result.data.Status === 'Invalid') {
+                      alert('Invalid User');
+                  } else {
+                      // Send verification email upon successful registration
+                      console.log('User Registered');
+  
+                      // Now, send the email message
+                      const email = data.email;
+                      const name = data.name;
+  
+                      axios.post('https://react.opositive.io/PHPMailer-master/studio-plus/register.php', { email, name })
+                          .then((response) => {
+                              console.log('Email sent');
+  
+                              // Redirect to the thank you page or any other page you like
+                              history(`/thankyou`);
+                          })
+                          .catch((error) => {
+                              console.log('Error sending email:', error);
+  
+                              // Redirect to the thank you page or any other page you like
+                              history(`/thankyou`);
+                          });
+                  }
+              })
+              .catch((error) => {
+                  console.log('Error during registration:', error);
+              });
+      } else {
+          // Verification failed
+          alert('Invalid verification code. Please try again.');
+      }
+  };
+  
 
     const submitForm = (e) => {
         e.preventDefault();
-        const senddata = {
-            name: data.name,
-            email: data.email,
-            company: data.company,
-            url: data.url,
-            password: data.password
-        };
-
-        axios.post('https://react.opositive.io/insert.php', senddata)
-            .then((result) => {
-                if (result.data.Status === 'Invalid') {
-                    alert('Invalid User');
-                } else {
-                    // Send verification email upon successful registration
-                    sendVerificationEmail();
-                }
-            })
-            .catch((error) => {
-                console.log('Error during registration:', error);
-            });
+        sendVerificationEmail();
+      //   var bodyFormData = new FormData();
+      //   let email = document.getElementById('email').value;
+      //   let name = document.getElementById('name').value;
+      //   bodyFormData.append('email', email);
+      //   bodyFormData.append('name', name);
+     
+      //   axios({
+      //    method: "post",
+      //    url: "https://react.opositive.io/PHPMailer-master/studio-plus/register.php",
+      //    data: bodyFormData,
+      //    headers: { "Content-Type": "multipart/form-data" },
+      //  })
+      //  .then(function (response) {
+          
+      //    console.log('mail sent')
+     
+      //  })
+      //  .catch(function (response) {
+      //    //handle error
+      //    console.log(response);
+      //  });
     };
   
     return (
@@ -112,12 +151,13 @@ const Register = (props) => {
                     </div>
                     <div className="col-md-6 col-sm-12">
                         {verificationCodeInputVisible ? (
-                            <div>
+                            <div className="verification-div">
                                 <p>Please enter the verification code sent to your email:</p>
                                 <input
                                     type="text"
                                     name="verificationCode"
                                     onChange={handleChangeVerificationCode}
+                                    className="form-control"
                                 />
                                 <button onClick={verifyEmail}>Verify</button>
                             </div>
