@@ -31,23 +31,52 @@ const Register = (props) => {
         }
         return code;
     };
-    const sendVerificationEmail = () => {
-      const authCode = generateRandomCode();
 
-      const { name, email } = data;
+    // Store the verification code in component state
+    const [authCode, setAuthCode] = useState('');
+
+    const sendVerificationEmail = () => {
+        const { name, email } = data;
       
-  
-      // Send the verification code along with the user's email to the backend
-      axios.post('https://react.opositive.io/PHPMailer-master/studio-plus/send_verification_email.php', { name, email, authCode }) // Include authCode in the data being sent
-          .then((response) => {
-              console.log('Verification email sent');
-              // Save the authentication code to the state for verification later
-              setVerificationCode(authCode);
-              setVerificationCodeInputVisible(true);
-          })
-          .catch((error) => {
-              console.log('Error sending verification email:', error);
-          });
+        // Generate the verification code
+        const generatedAuthCode = generateRandomCode();
+
+        // Send the verification code along with the user's email to the backend
+        axios.post('https://react.opositive.io/PHPMailer-master/studio-plus/send_verification_email.php', { name, email, authCode: generatedAuthCode })
+            .then((response) => {
+                console.log('Verification email sent');
+
+                // Save the authentication code to the state for verification later
+                setAuthCode(generatedAuthCode);
+
+                // Show the verification input field
+                setVerificationCodeInputVisible(true);
+            })
+            .catch((error) => {
+                console.log('Error sending verification email:', error);
+            });
+    };
+
+    const verifyEmail = () => {
+        console.log('Verification Code in State:', verificationCode);
+        
+        // Get the verification code stored in state (authCode)
+        const receivedVerificationCode = authCode;
+
+        console.log('Recieved Verification code is', receivedVerificationCode);
+
+        if (verificationCode === receivedVerificationCode) {
+            // Verification successful
+
+            // Clear the verification code from the state after successful verification
+            setAuthCode('');
+
+            // Redirect to the thank you page or any other page you like
+            history(`/thankyou`);
+        } else {
+            // Verification failed
+            alert('Invalid verification code. Please try again.');
+        }
     };
 
     const submitForm = (e) => {
@@ -73,52 +102,7 @@ const Register = (props) => {
                 console.log('Error during registration:', error);
             });
     };
-
-    const verifyEmail = () => {
-      console.log('Verification Code in State:', verificationCode);
-      const senddata = {
-          email: data.email,
-          verificationCode: verificationCode // Make sure this is the correct variable storing the verification code from the user input
-      };
-      const authCode = generateRandomCode();
-
-      axios.post('https://react.opositive.io/verify_email.php', senddata)
-          .then((result) => {
-              // Assuming the backend sends back the 'verificationCode' as part of the response
-              const receivedVerificationCode = result.data.verificationCode;
-
-              //verification code for the react 
-              sessionStorage.setItem("verification", verificationCode);
-              let verification = sessionStorage.getItem("verification");
-              console.log('Verification code is' + verification );
-
-              //verification code backend
-              sessionStorage.setItem("recievedverification",authCode )
-              let recievedverification = sessionStorage.getItem("recievedverification");
-              console.log('Recieved Verification code is' + recievedverification );
-
-              if (verification === recievedverification) {
-                  // Verification successful
   
-                  // Store the verification code in session storage
-                  
-  
-                  // Clear the verification code from the component state after successful verification
-                  setVerificationCode('');
-  
-                  // Redirect to the thank you page or any other page you like
-                  history(`/thankyou`);
-              } else {
-                  // Verification failed
-                  alert('Invalid verification code. Please try again.');
-              }
-          })
-          .catch((error) => {
-              console.log('Error during email verification:', error);
-          });
-  };
-  
-
     return (
         <>
             <div className="container">
