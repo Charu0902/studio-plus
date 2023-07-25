@@ -62,9 +62,9 @@ const Edituser = () => {
             await axios.post('https://react.opositive.io/update.php', userData);
             var useradded = document.getElementById('success');
             useradded.style.display = 'block';
-            // setTimeout(() =>{
-            //   history(`/home`)
-            // },3000)
+            setTimeout(() =>{
+              history(`/home`)
+            },3000)
         } catch (error) {
             console.error("Error updating user:", error);
             alert('Failed to update user. Please try again.');
