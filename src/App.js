@@ -23,6 +23,7 @@ import Edituser from './Edituser';
 import Dcompo from './Dcompo';
 import ForgotPasswordForm from './ForgotPasswordForm';
 import ResetPasswordForm from './ResetPasswordForm';
+import Nforgetpassword from './Nforgetpassword';
 
 // import Form from './components/Form';
 function App() {
@@ -51,7 +52,7 @@ function App() {
   <Route path='/home'  element = {<Home/>}/>
   <Route path='/register2'  element = {<Register2/>}/>
   <Route path='/thankyou'  element = {<Thankyou/>}/>
-  <Route path='/forget-password' element = {<Forgetpassword/>}/>
+  <Route path='/forget-password' element = {<Nforgetpassword/>}/>
   <Route path='/reset-password' element = {<Resetpassword/>}/>
   <Route path='/table' element = {<Table/>}/>
   {/* {
@@ -67,6 +68,8 @@ function App() {
     <Route path = '/:slug' element={<Dcompo></Dcompo>}/>
     <Route  path="/forget" element={<ForgotPasswordForm></ForgotPasswordForm>} />
         <Route path="/reset-password/:token" element={<ResetPasswordForm></ResetPasswordForm>} />
+        {/* <Route  path="/nforget" element={<Nforgetpassword></Nforgetpassword>} /> */}
+
 </Routes>
 </BrowserRouter>
 <Cookie></Cookie>
