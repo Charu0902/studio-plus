@@ -143,7 +143,7 @@ const Adduser = () => {
                 </div>
               </div>
               <br />
-              <b>Access required?</b>
+              <b>Access recieved?</b>
               <div className="col-lg-6 col-md-12 register-form-col">
                 <div className="row access-row">
                   <div className="col-lg-3 col-sm-12 access-required">
