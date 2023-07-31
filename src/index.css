@@ -29,6 +29,51 @@ div#failure {
 .forget-password-verification-div{
   margin-top: 20px;
 }
+.access-required input {
+  margin-left: 10px;
+}
+/* label.access-required {
+  font-weight: 500;
+} */
+.user-details h2 {
+  font-size: 20px;
+}
+.add-reports {
+  padding-top: 0;
+}
+.add-reports {
+  padding-top: 0px!important;
+}
+.edit-user-submit {
+  padding-top: 0px!important;
+}
+.select-reports-div li {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: left;
+}
+.access-required {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: left;
+}
+.user-details p {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: left;
+}
+.user-details {
+  margin-top: 50px;
+}
 div#failure p a {
   color: white;
   font-weight: 600;

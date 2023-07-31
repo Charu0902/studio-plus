@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Adduser = () => {
   let history = useNavigate();
+  // Initialize state variables using the useState hook
 
   const [user, setUser] = useState({
     name: "",
@@ -18,41 +19,66 @@ const Adduser = () => {
     gadsChecked:false,
   });
 
+  // Destructure state variables for easier access
+
   const { name, email, company, url, password, iframe, gaChecked, gscChecked, gmbChecked, gadsChecked} = user;
+
+  // Handle change events for input fields and update state accordingly
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  // Handle change event for GA checkbox and update state accordingly
+
   const handleGaChange = (e) => {
     setUser({ ...user, gaChecked: e.target.checked });
   };
 
+  // Handle change event for GSC checkbox and update state accordingly
+
   const handleGscChange = (e) => {
     setUser({ ...user, gscChecked: e.target.checked });
   };
+
+    // Handle change event for GMB checkbox and update state accordingly
+
     const handleGmbChange = (e) => {
       setUser({ ...user, gmbChecked: e.target.checked });
     };
+
+      // Handle change event for Google Ads checkbox and update state accordingly
+
     const handleGadsChange = (e) => {
       setUser({ ...user, gadsChecked: e.target.checked });
     };
+
+      // Handle form submission
+
   const submitUser = async (e) => {
     e.preventDefault();
     console.log(user);
+        // Convert checkbox values to '1' or '0' to store in the database
+
     const userData = {
       ...user,
       ga: user.gaChecked ? '1' : '0',
       gsc: user.gscChecked ? '1' : '0',
       gmb: user.gmbChecked ? '1' : '0',
-      gads: user.gmbChecked ? '1' : '0'
+      gads: user.gadsChecked ? '1' : '0'
     };
     console.log(userData);
     try {
+            // Send a POST request to the backend API to add the user
+
       const response = await axios.post('http://react.opositive.io/add-user.php', userData);
+            // Handle the response based on the status received
+
       if (response.data.status === 'Invalid') {
         alert('Invalid User');
       } else {
+                // If user added successfully, display success message and navigate to home page
+
         var useradded = document.getElementById('success');
         useradded.style.display = 'block';
         setTimeout(() => {
@@ -143,8 +169,8 @@ const Adduser = () => {
                 </div>
               </div>
               <br />
-              <b>Access recieved?</b>
-              <div className="col-lg-6 col-md-12 register-form-col">
+              <b>Select required reports</b>
+              <div className="col-lg-9 col-md-12 register-form-col">
                 <div className="row access-row">
                   <div className="col-lg-3 col-sm-12 access-required">
                     <label>GA</label>

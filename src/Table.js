@@ -134,19 +134,27 @@ for( let i = ( parseInt($('.pagination li.active').attr('data-page'))  -2 )  ; i
 }
 
     })
+
+    // State to hold the category data
+
     const [category1, setCategory1]=useState([]);
+    // Fetch the category data 
     useEffect(()=>{
    
         getCategory();
     
     },[]);
+     // Function to fetch category data from the server
          const getCategory = async()=>{
             const res = await fetch('https://react.opositive.io/list.php')
+            //Converts the data into json format
             const getdata = await res.json();
+            //Updates the cataegory data state
             setCategory1(getdata);   
         }
-
+// Function to delete a user by ID
         const deleteUser = (id) =>{
+          //Axios js is a promise-based HTTP library that lets you consume an API service
             axios.delete('https://react.opositive.io/delete.php', {data: {id : id}})
             .then((res) =>{
                 getCategory();

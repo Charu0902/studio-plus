@@ -3,29 +3,48 @@ import axios from 'axios';
 import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
 
 const Login = () =>{
+        // Get the navigation function from react-router-dom
+
     let navigate = useNavigate();
+        // Define state variables using useState hook to manage form inputs
+
     const [user,setUser] = useState({email:'', password:''});
+        // Function to handle input changes and update the state accordingly
+
     const handleChange = (e) =>{
         setUser({...user, [e.target.name]:e.target.value});
     }
+        // Function to handle form submission
+
     const submitForm = (e) => {
         e.preventDefault();
+        // Prepare data to be sent to the server
+
        const senddata = {
         email: user.email,
             password: user.password
         }
         console.log(senddata);
+
+       // Send a POST request to the server using axios
+
         axios.post('https://react.opositive.io/login.php', senddata)
         .then((result) =>{
+           // If the server responds with status "200" (success)
+
             if(result.data.status === "200" ){
-               window.localStorage.setItem('email', result.data.email);
-               window.localStorage.setItem('name', result.data.name);
-            
+                 // Store user information in local storage (client-side)
+               window.localStorage.setItem('email', result.data.userEmail);
+               window.localStorage.setItem('name', result.data.userName);
+               // Navigate to the home page
+
                 navigate(`/home`)
                 console.log(result.data);
 
             }
             else{
+            // If the server responds with an error status, display an error message
+
                 document.getElementById('invlaid-user').style.display = 'block';
                 // alert('Invalid User');
                 console.log(result.data);
