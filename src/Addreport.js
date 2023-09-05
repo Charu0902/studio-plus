@@ -1,18 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const Adduser = () => {
+const Addreport = () => {
   let history = useNavigate();
   // Initialize state variables using the useState hook
 
   const [user, setUser] = useState({
-    name: "",
-    email: "",
-    company: "",
-    url: "",
-    password: "",
-    iframe: "",
+    reportname: "",
+    imageurl: "",
     gaChecked: false,
     gscChecked: false,
     gmbChecked:false,
@@ -21,7 +18,7 @@ const Adduser = () => {
 
   // Destructure state variables for easier access
 
-  const { name, email, company, url, password, iframe, gaChecked, gscChecked, gmbChecked, gadsChecked} = user;
+  const { reportname, imageurl, gaChecked, gscChecked, gmbChecked, gadsChecked} = user;
 
   // Handle change events for input fields and update state accordingly
 
@@ -71,7 +68,7 @@ const Adduser = () => {
     try {
             // Send a POST request to the backend API to add the user
 
-      const response = await axios.post('http://react.opositive.io/add-user.php', userData);
+      const response = await axios.post('https://react.opositive.io/create-report.php', userData);
             // Handle the response based on the status received
 
       if (response.data.status === 'Invalid') {
@@ -93,83 +90,37 @@ const Adduser = () => {
   return (
     <>
       <div className="container">
-        <h1 className="heading">Add Client</h1>
-        <p id="success">Client Added Successfully!</p>
+        <h1 className="heading">Add Report</h1>
+        <p id="success">Report Added Successfully!</p>
         <div className="row add-user-row">
           <form onSubmit={(e) => submitUser(e)}>
             <div className="col-lg-12">
               <div className="row">
                 <div className="col-lg-6 col-md-12 register-form-col">
-                  <label>Name</label>
+                  <label>Report Name</label>
                   <input
                     type="text"
-                    name="name"
+                    name="reportname"
                     className="form-control"
-                    value={name}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-                <div className="col-lg-6 col-md-12 register-form-col">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    name="email"
                     required
-                    className="form-control"
-                    value={email}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-lg-6 col-md-12 register-form-col">
-                  <label>Company Name</label>
-                  <input
-                    type="text"
-                    name="company"
-                    className="form-control"
-                    value={company}
+                    value={reportname}
                     onChange={(e) => handleChange(e)}
                   />
                 </div>
                 <div className="col-lg-6 col-md-12 register-form-col">
-                  <label>Website Url</label>
+                  <label>Image Url</label>
                   <input
                     type="url"
-                    name="url"
+                    name="imageurl"
                     required
                     className="form-control"
-                    value={url}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-lg-6 col-md-12 register-form-col">
-                  <label>Iframe</label>
-                  <textarea
-                    name="iframe"
-                    required
-                    className="form-control"
-                    value={iframe}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-                <div className="col-lg-6 col-md-12 register-form-col">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    required
-                    className="form-control"
-                    autoComplete="on"
-                    value={password}
+                    value={imageurl}
                     onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
               <br />
-              <b>Select required reports</b>
+              <b>Select required access</b>
               <div className="col-lg-9 col-md-12 register-form-col">
                 <div className="row access-row">
                   <div className="col-lg-3 col-sm-12 access-required">
@@ -210,14 +161,25 @@ const Adduser = () => {
 </div>
                 </div>
               </div>
-              <div className="col-lg-6 col-md-12 text-left register-button">
+              <div className="row">
+              <div className="col-lg-2 col-md-12 text-left register-button">
                 <input
                   type="submit"
                   name="submit"
-                  value="Add Client"
+                  value="Add Report"
                   className="btn btn-success"
                 />
               </div>
+              <div className="col-lg-2 col-md-12">
+ <Link to='/home'>
+  <button className="cancel">
+    Cancel
+   </button>
+  </Link>
+ </div>
+              </div>
+        
+
             </div>
           </form>
         </div>
@@ -226,4 +188,4 @@ const Adduser = () => {
   );
 };
 
-export default Adduser;
+export default Addreport;

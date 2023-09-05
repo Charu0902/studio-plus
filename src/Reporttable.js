@@ -4,7 +4,7 @@ import $ from 'jquery';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Table = () =>{
+const Reporttable = () =>{
     useEffect(() =>{
         getPagination('#myTable');
    
@@ -144,9 +144,9 @@ for( let i = ( parseInt($('.pagination li.active').attr('data-page'))  -2 )  ; i
         getCategory();
     
     },[]);
-     // Function to fetch category data from the server
+    //  Function to fetch category data from the server
          const getCategory = async()=>{
-            const res = await fetch('https://react.opositive.io/fetch-all-clients.php')
+            const res = await fetch('https://react.opositive.io/fetch-report.php')
             //Converts the data into json format
             const getdata = await res.json();
             //Updates the cataegory data state
@@ -155,7 +155,7 @@ for( let i = ( parseInt($('.pagination li.active').attr('data-page'))  -2 )  ; i
 // Function to delete a user by ID
         const deleteUser = (id) =>{
           //Axios js is a promise-based HTTP library that lets you consume an API service
-            axios.delete('https://react.opositive.io/delete.php', {data: {id : id}})
+            axios.delete('https://react.opositive.io/delete-report.php', {data: {id : id}})
             .then((res) =>{
                 getCategory();
                 var deleteusermessage =  document.getElementById('record-delete');
@@ -172,24 +172,16 @@ alert('Error in the code')
     return(
         
         <>
-    <div class="container table-container">
+       <div class="container table-container">
 		{/* <h2>Select Number Of Rows</h2> */}
 				
 
                   <table  id="myTable">
                     <thead>
 <tr class="header">
-<th>id</th>
+<th>S no.</th>
   <th>Name</th>
-  <th>Email</th>
-  <th>Company</th>
-  <th>Website</th>
-  {/* <th>Password</th> */}
-  <th>GA</th>
-  <th>GSC</th>
-  <th>GMB</th>
-  <th>Google Ads</th>
-  <th>Report Slug</th>
+  <th>Image</th>
   <th>Action</th>
 
 </tr>
@@ -199,26 +191,17 @@ alert('Error in the code')
          <tbody>
                <tr key={getcat.id} className='table__row'>
                   <td className='table-col'>{getcat.id}</td>
-                  <td className='table-col'>{getcat.user_name}</td>
-                  <td className='table-col'>{getcat.user_email}</td>
-                  <td className='table-col'>{getcat.company_name}</td>
-                  <td className='table-col'><a href={getcat.url} target='_blank'>{getcat.website}</a></td>
-                  {/* <td className='table-col'>{getcat.password}</td> */}
-                  <td className='table-col ga'>{getcat.access_ga === 0 ? 'N/A' : getcat.access_ga === 1 ? 'Access not recieved' : 'Access recieved'}</td>
-                  <td className='table-col gsc'>{getcat.access_gsc === 0 ? 'N/A' : getcat.access_gsc === 1 ? 'Access not recieved' : 'Access recieved'}</td>
-                  <td className='table-col gmb'>{getcat.access_gmb === 0 ? 'N/A' : getcat.access_gmb === 1 ? 'Access not recieved' : 'Access recieved'}</td>
-                  <td className='table-col gads'>{getcat.access_gads === 0 ? 'N/A' : getcat.access_gads === 1 ? 'Access not recieved' : 'Access recieved'}</td>
+                  <td className='table-col'>{getcat.name}</td>
+                  <td className='table-col'>{getcat.image}</td>
 
-                  <td className='table-col'>
-                  <Link to={`/${getcat.slug}`}>{getcat.slug}</Link>
-                  </td>
+                 
                   <td className='table-col'>
                     <Link to='' onClick={() =>deleteUser(getcat.id) }>
                     <i class="fa fa-trash delete-icon" aria-hidden="true"></i>
 
                     </Link>
 
-                    <Link to={`/edit-user/${getcat.u_id}`}>
+                    <Link to={`/edit-report/${getcat.id}`}>
 
                     <i class="fa fa-pencil-square" aria-hidden="true"></i>
 
@@ -271,4 +254,4 @@ alert('Error in the code')
     )
 }
 
-export default Table;
+export default Reporttable;

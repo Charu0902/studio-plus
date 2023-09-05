@@ -24,6 +24,10 @@ import Dcompo from './Dcompo';
 import ForgotPasswordForm from './ForgotPasswordForm';
 import ResetPasswordForm from './ResetPasswordForm';
 import Nforgetpassword from './Nforgetpassword';
+import Client from './Client';
+import Reports from './Report';
+import Addreport from './Addreport';
+import Editreport from './Editreport';
 
 // import Form from './components/Form';
 function App() {
@@ -55,19 +59,17 @@ function App() {
   <Route path='/forget-password' element = {<Nforgetpassword/>}/>
   <Route path='/reset-password' element = {<Resetpassword/>}/>
   <Route path='/table' element = {<Table/>}/>
-  {/* {
-      category1.map( (getcat,index)=>(
-         <Route path='/:company' element = {<Read name={getcat.name} email = {getcat.email}/>}/> 
-      )
-       )
-  } */}
-  <Route  path="/homes" element={<Nhome></Nhome>} />
+  <Route path='/reports' element = {<Reports/>}/>
+  <Route path='/add-report' element = {<Addreport/>}/>
+  {/* <Route  path="/homes" element={<Nhome></Nhome>} />
+  <Route  path="/client" element={<Client/>} /> */}
         {/* <Route path="/:slug" element={<Post></Post>} /> */}
     <Route path = '/add-user' element={<Adduser></Adduser>}/>
     <Route path='edit-user/:id' element = {<Edituser/>}></Route>
+    <Route path='edit-report/:id' element = {<Editreport/>}></Route>
     <Route path = '/:slug' element={<Dcompo></Dcompo>}/>
-    <Route  path="/forget" element={<ForgotPasswordForm></ForgotPasswordForm>} />
-        <Route path="/reset-password/:token" element={<ResetPasswordForm></ResetPasswordForm>} />
+    {/* <Route  path="/forget" element={<ForgotPasswordForm></ForgotPasswordForm>} />
+        <Route path="/reset-password/:token" element={<ResetPasswordForm></ResetPasswordForm>} /> */}
         {/* <Route  path="/nforget" element={<Nforgetpassword></Nforgetpassword>} /> */}
 
 </Routes>

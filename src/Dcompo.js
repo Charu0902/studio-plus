@@ -1,53 +1,27 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate,useParams } from "react-router-dom";
-import {Helmet} from "react-helmet";
+// import {Helmet} from "react-helmet";
 
 const Dcompo = () =>{
     let history = useNavigate();
     const {slug} = useParams();
     const [user, setUser] = useState({
-        name:"",
-        email: "",
-        company: "",
-        url:"",
-        password:"",
-        id:"",
-        iframe:"",
-        slug:""
+        slug:"",
+        iframe_ga: "",
+        website: ""
+        
     });
     useEffect(() =>{
         
         loadUsers();
        
     },[])
-    const {name,email,company,url,iframe} = user
-    // const handleChange =(e)=>{
-    //     setUser({...user,[e.target.name]: e.target.value})
-    // }
-    // const updateFrom = async(e) =>{
-    //     e.preventDefault();
-    //     console.log(user);
-
-    //     await axios.post('https://react.opositive.io/update.php',user)
-    //     .then((result) =>{
-    //         if(result.data.Status == 'Invalid'){
-    //             alert('Invalid User');
-    //         }
-    //         else{
-    //             var useradded = document.getElementById('success');
-    //             useradded.style.display = 'block';
-    //           setTimeout(() =>{
-    //             history(`/home`)
-    //           },3000)
-    //         }
-
-    //     })
-    // }
+    const {iframe_ga,website} = user
 
     const loadUsers = async ()=>{
         console.log('AA'+slug);
-        const result = await axios.get('https://react.opositive.io/view.php?slug='+slug)
+        const result = await axios.get('https://react.opositive.io/show-client-report.php?slug='+slug)
      
         setUser(result.data);
         var load = document.getElementById('loadingMessage');
@@ -56,57 +30,69 @@ const Dcompo = () =>{
    
     return(
         <>
-        <Helmet>
-                <meta charSet="utf-8" />
-                <title>{company} Powered by Studio+</title>
-            </Helmet>
-      {/* <div className="container">
-      <h1 className="heading">View User</h1>
-        <p id="success">User Upadted Successfully!</p>
-      <div className="row edit-user-row"> */}
-        {/* <form onSubmit={e => updateFrom(e)}> */}
-
-        {/* <div className="col-lg-6 col-md-12 register-form-col"> 
-      <label >Name</label> - <p>{name}</p>
-      </div>
-
-    
-      <div className="col-lg-6 col-md-12 register-form-col"> 
-      <label>Email</label>-
-      <p>{email}</p>
-      </div>
-      
-      <div className="col-lg-6 col-md-12 register-form-col"> 
-      <label>Company Name</label>-
-      <p>{company}</p>
-       
-      </div>
-   
-      <div className="col-lg-6 col-md-12 register-form-col"> 
-      <label>Website Url</label>-
-      <p>
-      <a href={url}>{url}</a>
-      </p>
-        
-      </div>
-     
-     */}
-      
-      
-       {/* <div className="col-lg-6 col-md-12 text-left register-button">
-           <input type="submit" name = 'submit' value='Update User' className="btn btn-success"/>
-       </div> */}
-       {/* </form> */}
-        {/* </div>
-      </div> */}
       <div id="loadingMessage">
       <img src="./Assets/voiceloader.gif" className="img-fluid"/>
 
       </div>
-      <section>
-      {/* <h2 className="heading">View report</h2> */}
-
-      <iframe  src={iframe} height='1600' allowfullscreen className="user-iframe" id="foo"></iframe>
+      <section className="clinet-dashboard">
+       <div className="container-fluid">
+       <div className="row client-dahboard-row">
+          <div className="col-lg-2 col-md-4 sideboard">
+          <input type="text" id="myInput1" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"/>
+          <ul className="report-list">
+            <li><i class="fa fa-chevron-right" aria-hidden="true"></i> Report 1</li>
+            <li><i class="fa fa-chevron-right" aria-hidden="true"></i> Report 2</li>
+            <li><i class="fa fa-chevron-right" aria-hidden="true"></i> Report 3</li>
+            <li><i class="fa fa-chevron-right" aria-hidden="true"></i> Report 4</li>
+            <li><i class="fa fa-chevron-right" aria-hidden="true"></i> Report 5</li>
+            <li><i class="fa fa-chevron-right" aria-hidden="true"></i> Report 6</li>
+          </ul>
+          </div>
+         
+          <div className="col-lg-10 col-md-8 list-reports">
+            <div className="row">
+               <div className="col-md-6 col-sm-12">
+               <b>Iframe link -</b>
+               <p>{iframe_ga}</p>
+               </div>
+               <div className="col-md-6 col-sm-12">
+               <b>Website url -</b>
+               <p>{website}</p>
+               </div>
+            </div>
+          <div className="row">
+          <div className="col-lg-3 col-md-6 col-sm-12">
+             <div className="report-card">
+              <img src="./Assets/gmb.webp"/>
+          {/* <h2>Report 1</h2> */}
+             </div>
+          
+          </div>
+          <div className="col-lg-3 col-md-6 col-sm-12">
+             <div className="report-card">
+             <img src="./Assets/gads.webp"/>
+          {/* <h2>Report 2</h2> */}
+             </div>
+          
+          </div>
+          <div className="col-lg-3 col-md-6 col-sm-12">
+             <div className="report-card">
+             <img src="./Assets/gsc.webp"/>
+          {/* <h2>Report 3</h2> */}
+             </div>
+          
+          </div>
+          <div className="col-lg-3 col-md-6 col-sm-12">
+             <div className="report-card">
+             <img src="./Assets/ga.webp"/>
+          {/* <h2>Report 4</h2> */}
+             </div>
+          
+          </div>
+          </div>
+          </div>
+       </div>
+       </div>
       </section>
         </>
     )

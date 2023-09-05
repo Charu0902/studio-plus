@@ -249,9 +249,9 @@ div#sucess p {
   margin-top: 30px;
   font-size: px;
 }
-.table__row:nth-child(2n) {
+/* .table__row:nth-child(2n) {
   background-color: #f0eeeef2;
-}
+} */
 .table-col {
   border: 1px solid #cccccceb;
   padding: 6px 8px;
@@ -504,6 +504,22 @@ ul.pagination {
 }
 .table-container {
   overflow-x: scroll;
+}
+.nav-item {
+  margin-bottom: 15px;
+}
+.studio-nav{
+  position: fixed!important;
+    top: 0;
+}
+.list-reports {
+  margin-top: 150px!important;
+}
+.sideboard {
+  display: none;
+}
+.dashboard-row {
+  margin-top: 100px!important;
 }
 }
 @media only screen and (max-width: 600px) {

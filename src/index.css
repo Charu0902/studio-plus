@@ -19,6 +19,94 @@ code {
 .verification-div {
   margin-top: 60px;
 }
+.dashboard-section p {
+  cursor: pointer;
+}
+p.reminder {
+  display: none;
+  text-align: center;
+  background: green;
+  color: white;
+  font-weight: 500;
+}
+.report-access-row {
+  margin-top: 30px!important;
+}
+.add-new-report-card {
+  overflow: hidden;
+  height: fit-content;
+}
+.report-access-inner-row{
+  margin-top: 20px!important;
+}
+p#reminder{
+  display: none;
+  text-align: center;
+  background: green;
+  color: white;
+  font-weight: 500;
+}
+.add-report {
+  /* margin-top: 40px; */
+  background: #ed2939;
+  border-radius: 6px;
+  border-color: transparent;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 18px;
+  align-items: center;
+  /* width: 130px; */
+  /* height: 40px; */
+  color: #fff;
+  padding: 13px 30px;
+  text-align: center;
+  font-weight: 500;
+}
+.report-heading {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+  text-align: center;
+}
+.reminder-button {
+  width: auto!important;
+  text-align: center;
+}
+.send-reminder-row button {
+  margin: 0 auto;
+}
+p.select-reports {
+  font-weight: 500;
+  font-size: 16px;
+}
+.reminder-button {
+  margin-top: 40px;
+  background: #ed2939;
+  border-radius: 6px;
+  border-color: transparent;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 18px;
+  align-items: center;
+  /* width: 130px; */
+  /* height: 40px; */
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: 500;
+}
+.reminder-button:hover{
+  background-color: transparent;
+  color: black;
+  border-color: transparent;
+  border: 2px solid #d01124;
+}
+.add-report:hover{
+  background-color: transparent;
+    color: black;
+    border-color: transparent;
+    border: 2px solid #d01124;
+}
 div#failure {
   text-align: center;
   background: #d01124;
@@ -35,6 +123,156 @@ div#failure {
 /* label.access-required {
   font-weight: 500;
 } */
+.report-form-col {
+  margin-top: 15px!important;
+}
+.add-new-report-card {
+  border: 3px solid #d01124;
+  border-radius: 12px;
+  padding: 20px 0px;
+  padding-top: 0;
+  /* justify-content: center; */
+}
+.radio-access-row{
+  padding-top: 05px!important;
+}
+.report-form-col {
+  margin: 0 auto;
+}
+/* input[type="radio"].radio-button-input {
+  width: 16px!important;
+  height: 16px!important;
+  position: relative;
+  top: 5px;
+  margin-left: 11px;
+  border: 1px solid #fff;
+}
+input[type="radio"].radio-button-input:checked::before{
+  content: "";
+	display: block;
+	width: 12px;
+	height: 12px;
+	background-color: #d01124;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	animation: appear 0.8s;
+  border: 3px solid #d01124;
+} */
+input[type=radio].radio-button-input {
+  appearance: none;
+  /* padding: 10px; */
+  background-color: white;
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  position: relative;
+  top: 4px;
+  margin-left: 10px;
+}
+input[type=radio].radio-button-input:checked {
+  background-color: #d01124;
+}
+.radio-button-col {
+  display: flex;
+}
+.sideboard {
+  min-height: 90vh;
+  background-color: #333;
+}
+.client-dahboard-row{
+  padding-top: 0!important;
+}
+.report-card {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin-bottom: 50px;
+    margin-right: 20px;
+    margin-left: 20px;
+    border-radius: 15px!important;
+}
+.report-card img {
+  width: 100%;
+}
+.client-dahboard-row {
+  background: #80808014;
+  min-height: 90vh;
+}
+.list-reports{
+  margin-top: 70px!important;
+}
+.report-card h2 {
+  text-align: center;
+}
+.report-card img {
+  border-radius: 15px!important;
+}
+.report-card h2 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  margin-bottom: 0px;
+}
+.report-list li {
+  color: white;
+  margin-bottom: 16px;
+}
+ul.report-list {
+  list-style: none;
+  margin-top: 30px;
+  padding-left: 15px;
+}
+i.fa.fa-chevron-right {
+  padding-right: 10px;
+}
+
+input#myInput1 {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 15px;
+  margin-top: 30px;
+  border: 2px solid #9e9e9ebd!important;
+}
+.add-new-report-card {
+  margin-bottom: 20px;
+}
+.reports-row {
+  justify-content: space-evenly;
+}
+.add-new-report {
+  margin-top: 40px;
+  background: #ed2939;
+  border-radius: 6px;
+  border-color: transparent;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 18px;
+  align-items: center;
+  color: #fff;
+  padding: 13px 15px;
+  text-align: center;
+  font-weight: 500;
+}
+.add-new-report:hover{
+  background-color: transparent;
+    color: black;
+    border-color: transparent;
+    border: 2px solid #d01124;
+    margin-top: 40px;
+    padding: 13px 15px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+    /* font-weight: 600; */
+    border-radius: 6px;
+}
+.report-form-col {
+  margin-top: 15px;
+}
 .user-details h2 {
   font-size: 20px;
 }
@@ -46,6 +284,18 @@ div#failure {
 }
 .edit-user-submit {
   padding-top: 0px!important;
+}
+.table-col.ga {
+  text-align: center!important;
+}
+.table-col.gsc {
+  text-align: center!important;
+}
+.table-col.gmb {
+  text-align: center!important;
+}
+.table-col.gads {
+  text-align: center!important;
 }
 .select-reports-div li {
   font-size: 16px;

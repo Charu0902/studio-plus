@@ -37,7 +37,7 @@ const Listpage = () =>{
       <>
       <div className='row admin-dashboard-row'>
          <div className='col-lg-6 col-md-12 col-sm-12'>
-         <h2 class="admin-dashboard">Admin Dasboard</h2>
+         <h2 class="admin-dashboard">Clients Dasboard</h2>
              <p className='record-delete-message' id='record-delete'>Record deleted successfully!</p>
          </div>
          <div className='col-lg-3 col-md-12 col-sm-12 search-bar-div'>
@@ -48,7 +48,7 @@ const Listpage = () =>{
       <div className='row'>
       <div className='add-user-div'>
             <Link to={`/add-user`}><i class="fa fa-user-plus" aria-hidden="true"></i>
-Add User</Link>
+Add Client</Link>
             </div>
       </div>
 

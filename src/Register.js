@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
@@ -9,32 +9,39 @@ const Register = (props) => {
         email: '',
         company: '',
         url: '',
-        password: '',
-        gaChecked: false,
-        gscChecked: false,
-        gmbChecked:false,
-        gadsChecked:false
+        password: ''
     });
-    const { gaChecked, gscChecked, gmbChecked, gadsChecked} = data;
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
     };
-    const handleGaChange = (e) => {
-        setData({ ...data, gaChecked: e.target.checked });
-      };
-    
-      const handleGscChange = (e) => {
-        setData({ ...data, gscChecked: e.target.checked });
-      };
-        const handleGmbChange = (e) => {
-            setData({ ...data, gmbChecked: e.target.checked });
-        };
-        const handleGadsChange = (e) => {
-            setData({ ...data, gadsChecked: e.target.checked });
-        };
+    const [selectedReports, setSelectedReports] = useState({});
+
     const [verificationCode, setVerificationCode] = useState('');
     const [verificationCodeInputVisible, setVerificationCodeInputVisible] = useState(false);
-
+    const [category1, setCategory1]=useState([]);
+    useEffect(()=>{
+        getCategory();
+    },[]);
+  
+    const getCategory = async()=>{
+  
+      const res = await fetch('https://react.opositive.io/fetch-report.php')
+  
+      //Converts the data into json format
+  
+      const getdata = await res.json();
+  
+      //Updates the cataegory data state
+  
+      setCategory1(getdata);  
+  
+  }
+  const handleReportChange = (reportName, checked) => {
+    setSelectedReports(prevReports => ({
+        ...prevReports,
+        [reportName]: checked
+    }));
+};
     const handleChangeVerificationCode = (e) => {
         setVerificationCode(e.target.value);
     };
@@ -72,30 +79,25 @@ const Register = (props) => {
                 console.log('Error sending verification email:', error);
             });
     };
-    const sendAccessRequestEmail = () => {
-        const { name, email, gaChecked, gscChecked, gmbChecked, gadsChecked } = data;
-    
-        // Prepare the email content based on the selected reports
+    const generateAccessRequestEmailContent = (name, selectedReports) => {
         let emailContent = `Dear ${name},<br><br>`;
-    
-        if (gaChecked) {
-            emailContent += "Please provide access for Google Analytics (GA).<br>";
+        
+        for (const reportName in selectedReports) {
+            if (selectedReports[reportName]) {
+                emailContent += `Please provide GA, GSC, GMB, GADS access for ${reportName} Report.<br>`;
+            }
         }
-        if (gscChecked) {
-            emailContent += "Please provide access for Google Search Console (GSC).<br>";
-        }
-        if (gmbChecked) {
-            emailContent += "Please provide access for Google Buisness Profile (GMB).<br>";
-        }
-        if (gadsChecked) {
-            emailContent += "Please provide access for Google Ads (GADS).<br>";
-        }
-        // Add similar conditions for other reports (gmbChecked, gadsChecked) if needed.
-    
+        
         emailContent += "<br>Regards,<br>Obbserv";
-    // console.log('Email content is' + emailContent);
-    // console.log('Client name is' + name);
-    // console.log('Client email is' + email);
+        
+        return emailContent;
+    };
+    
+    const sendAccessRequestEmail = () => {
+        const { name, email } = data;
+    
+        const emailContent = generateAccessRequestEmailContent(name, selectedReports);
+    
         axios.post('https://react.opositive.io/PHPMailer-master/studio-plus/send_email_to_client.php', { name, email, content: emailContent })
             .then((response) => {
                 console.log('Access request email sent');
@@ -104,6 +106,7 @@ const Register = (props) => {
                 console.log('Error sending access request email:', error);
             });
     };
+    
     
     const verifyEmail = () => {
       console.log('Verification Code in State:', verificationCode);
@@ -127,7 +130,9 @@ const Register = (props) => {
               ga: data.gaChecked ? '1' : '0',
               gsc: data.gscChecked ? '1' : '0',
               gmb: data.gmbChecked ? '1' : '0',
-              gads: data.gadsChecked ? '1' : '0'
+              gads: data.gadsChecked ? '1' : '0',
+              selectedReports: Object.keys(selectedReports).filter(reportName => selectedReports[reportName])
+
           };
           console.log(senddata);
        axios.post('https://react.opositive.io/register-client.php', senddata)
@@ -217,7 +222,7 @@ const Register = (props) => {
                                 </div>
                                 <br />
               <b>Select required reports</b>
-              <div className="col-lg-12 col-md-12 register-form-col">
+              {/* <div className="col-lg-12 col-md-12 register-form-col">
                 <div className="row access-row">
                   <div className="col-lg-3 col-sm-12 access-required">
                     <label>GA</label>
@@ -256,7 +261,23 @@ const Register = (props) => {
   />
 </div>
                 </div>
-              </div>
+              </div> */}
+               <div className="col-lg-12 col-md-12 register-form-col">
+                <div className="row access-row">
+                {category1.map((getcat, index) => (
+    <div className="col-lg-3 col-sm-12 access-required" key={getcat.id}>
+      <label>{getcat.name}</label>
+      <input
+        type="checkbox"
+        name={getcat.name}
+        onChange={e => handleReportChange(getcat.name, e.target.checked)}
+
+ 
+      />
+    </div>
+  ))}
+  </div>
+  </div>
                                 <div className="col-md-12 text-left register-button">
                                     <input type="submit" name='submit' value='Register' className="btn btn-success" />
                                 </div>

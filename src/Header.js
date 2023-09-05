@@ -1,42 +1,39 @@
 import React, { useEffect } from "react";
-import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Nav } from 'react-bootstrap';
 
-const Header = () =>{
+const Header = () => {
   const [auth, setAuth] = useState();
   const [name, setname] = useState();
-  let navigate = useNavigate();
-useEffect(() =>{
-  var name = localStorage.getItem('name');
+  useEffect(() => {
+    var name = localStorage.getItem('name');
+    setname(name);
+  }, []);
 
-setname(name);
-},
-[])
-    return(
-        <>
-        <nav class="navbar navbar-expand-sm studio-nav">
-  <div class="container-fluid nav-container">
-    <Link class="navbar-brand logo-pic" to="/">                  <img src="../Assets/opositive-logo.png" className="img-fluid"/>
-</Link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" id="button-header">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav ">
-      
-        <li class="nav-item welcome">
-          <span>Welcome</span> : {name}
-        </li>
-        <li class="nav-item">
-          <Link class="nav-link" to="/"><i class="fa fa-user" aria-hidden="true"></i>
-Logout</Link>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-        </>
-    )
+  return (
+    <>
+      <Navbar expand="sm" className="studio-nav">
+        <div className="container-fluid nav-container">
+          <Navbar.Brand as={Link} to="/home" className="logo-pic">
+            <img src="../Assets/opositive-logo.png" className="img-fluid" alt="Logo" />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="collapsibleNavbar" id="button-header" />
+          <Navbar.Collapse id="collapsibleNavbar">
+            <Nav className="navbar-nav">
+              <Nav.Item className="nav-item welcome">
+                <span>Welcome</span> : {name}
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link as={Link} to="/"><i className="fa fa-user" aria-hidden="true"></i> Logout</Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Navbar.Collapse>
+        </div>
+      </Navbar>
+    </>
+  )
 }
 
 export default Header;

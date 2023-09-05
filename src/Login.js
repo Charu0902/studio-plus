@@ -37,10 +37,19 @@ const Login = () =>{
                window.localStorage.setItem('email', result.data.userEmail);
                window.localStorage.setItem('name', result.data.userName);
                // Navigate to the home page
-
+              
+               if(result.data.userType == 1){
                 navigate(`/home`)
                 console.log(result.data);
-
+               }
+               else{
+                var slug = result.data.Slug;
+                var userId = result.data.userId;
+                navigate(`/${slug}`);
+                console.log(result.data);
+               }
+               console.log(result.data);
+                console.log('Slug is' + slug);
             }
             else{
             // If the server responds with an error status, display an error message
